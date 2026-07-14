@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>노캐디 교육·인증 프로그램 — 직영 3개소 검증 결과 요약</title>
+<style>
+  :root{
+    --green:#1a7a4a; --green-dark:#0e5233; --green-light:#e8f5ee;
+    --ink:#1d2733; --sub:#5b6b7b; --line:#e3e8ee; --bg:#f7f9fb;
+    --amber:#b45309; --amber-bg:#fef3e2; --red:#b3261e; --red-bg:#fdecea;
+    --blue:#1e5fa8; --blue-bg:#e9f1fb;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif; color:var(--ink); background:var(--bg); line-height:1.7; font-size:15.5px;}
+  .wrap{max-width:920px; margin:0 auto; padding:0 28px 80px;}
+
+  header{background:linear-gradient(135deg,var(--green-dark),var(--green)); color:#fff; padding:52px 0 44px; margin-bottom:40px;}
+  header .wrap{padding-bottom:0;}
+  .tag{display:inline-block; background:rgba(255,255,255,.18); border-radius:20px; padding:4px 14px; font-size:12.5px; letter-spacing:.4px; margin-bottom:14px;}
+  header h1{font-size:28px; font-weight:800; line-height:1.35; margin-bottom:12px;}
+  header p{opacity:.88; font-size:14px;}
+  .ask-banner{background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.35); border-radius:10px; padding:12px 18px; margin-top:20px; font-size:15px;}
+  .ask-banner b{color:#ffe9a8;}
+
+  h2{font-size:21px; font-weight:800; margin:54px 0 8px; padding-left:14px; border-left:5px solid var(--green);}
+  h2 .num{color:var(--green); margin-right:6px;}
+  .h2sub{color:var(--sub); font-size:13.5px; margin:0 0 20px 19px;}
+
+  .card{background:#fff; border:1px solid var(--line); border-radius:12px; padding:24px 28px; margin-bottom:14px;}
+
+  /* 결론 박스 */
+  .conclusion{background:#fff; border:2px solid var(--green); border-radius:14px; padding:26px 30px; margin:22px 0;}
+  .conclusion .line{display:flex; gap:14px; padding:10px 0; align-items:flex-start;}
+  .conclusion .line + .line{border-top:1px dashed var(--line);}
+  .conclusion .n{flex:none; width:30px; height:30px; border-radius:50%; background:var(--green); color:#fff; font-weight:800; display:flex; align-items:center; justify-content:center; font-size:14px; margin-top:2px;}
+  .conclusion .line p{font-size:16px;}
+
+  .kpi-row{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:22px 0;}
+  .kpi{background:#fff; border:1px solid var(--line); border-radius:12px; padding:20px; text-align:center;}
+  .kpi .v{font-size:30px; font-weight:800; color:var(--green-dark); line-height:1.2;}
+  .kpi .l{font-size:12.5px; color:var(--sub); margin-top:6px;}
+  .kpi.warn .v{color:var(--red);}
+
+  table{width:100%; border-collapse:collapse; background:#fff; font-size:14px;}
+  th,td{border:1px solid var(--line); padding:10px 14px; text-align:left; vertical-align:top;}
+  th{background:var(--green-light); font-weight:700; color:var(--green-dark); white-space:nowrap;}
+  .tbl-scroll{overflow-x:auto; border-radius:10px; border:1px solid var(--line); margin:14px 0;}
+  .tbl-scroll table{border:none;}
+
+  .fact{background:#fff; border:1px solid var(--line); border-radius:12px; padding:20px 24px; margin-bottom:12px; display:flex; gap:18px; align-items:flex-start;}
+  .fact .badge{flex:none; font-size:12px; font-weight:800; padding:4px 12px; border-radius:12px; margin-top:3px; white-space:nowrap;}
+  .badge.bad{background:var(--red-bg); color:var(--red);}
+  .badge.ok{background:var(--green-light); color:var(--green-dark);}
+  .badge.warn{background:var(--amber-bg); color:var(--amber);}
+  .fact h3{font-size:16px; font-weight:800; margin-bottom:5px;}
+  .fact p{font-size:14px; color:#3c4a58;}
+  .fact .ev{font-size:12.5px; color:var(--sub); margin-top:6px;}
+
+  /* flywheel */
+  .flywheel{display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin:20px 0; align-items:stretch;}
+  .fw-step{background:#fff; border:1.5px solid var(--green); border-radius:12px; padding:16px 14px; text-align:center; position:relative; margin-right:26px;}
+  .fw-step:last-child{margin-right:0;}
+  .fw-step::after{content:"→"; position:absolute; right:-22px; top:50%; transform:translateY(-50%); color:var(--green); font-size:20px; font-weight:800;}
+  .fw-step:last-child::after{content:"↺"; right:auto; left:50%; top:auto; bottom:-30px; transform:translateX(-50%);}
+  .fw-step b{display:block; color:var(--green-dark); font-size:14.5px; margin-bottom:4px;}
+  .fw-step span{font-size:12px; color:var(--sub); line-height:1.5; display:block;}
+  .fw-note{text-align:center; font-size:13px; color:var(--sub); margin-top:34px;}
+
+  .pilot{background:var(--green-light); border:1.5px solid #bfe3cf; border-radius:14px; padding:26px 30px; margin:18px 0;}
+  .pilot h3{font-size:17px; font-weight:800; color:var(--green-dark); margin-bottom:12px;}
+  .pilot table{background:transparent; font-size:14px;}
+  .pilot th{background:rgba(255,255,255,.7);}
+  .pilot td{background:#fff;}
+
+  ul.clean{list-style:none; padding-left:0;}
+  ul.clean li{padding:8px 0 8px 26px; position:relative; border-bottom:1px dashed var(--line);}
+  ul.clean li:last-child{border-bottom:none;}
+  ul.clean li::before{content:"—"; position:absolute; left:4px; color:var(--green); font-weight:700;}
+
+  .quote{background:#fbfcfd; border-left:4px solid #c6d2dd; padding:12px 16px; margin:12px 0; font-size:13.5px; color:#3c4a58; border-radius:0 8px 8px 0;}
+  .quote .who{font-weight:700; color:var(--green-dark); font-size:12.5px; display:block; margin-bottom:3px;}
+
+  .ask-final{background:#fff; border:2px solid var(--green-dark); border-radius:14px; padding:26px 30px; margin:24px 0;}
+  .ask-final h3{color:var(--green-dark); font-size:17px; margin-bottom:12px;}
+
+  footer{margin-top:60px; padding-top:18px; border-top:1px solid var(--line); font-size:12.5px; color:var(--sub);}
+  @media(max-width:820px){.kpi-row{grid-template-columns:repeat(2,1fr);} .flywheel{grid-template-columns:1fr; gap:30px;} .fw-step{margin-right:0;} .fw-step::after{content:"↓"; right:auto; left:50%; top:auto; bottom:-26px; transform:translateX(-50%);}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <span class="tag">내부 검토용 · 2026.07</span>
+    <h1>노캐디 교육·인증 프로그램<br>직영 3개소 검증 결과 요약</h1>
+    <p>검증 대상: 이지스카이CC · 더반CC · 의령리온GC (직영 3개소 서면 설문, 전원 회신)</p>
+    <div class="ask-banner">검토 포인트 — <b>프로그램 방향 전환 : 영상 배지 → 데이터 기반 단계형 라이선스</b></div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ============ 1. 결론 ============ -->
+  <h2><span class="num">1.</span>결론 요약</h2>
+  <div class="conclusion">
+    <div class="line"><div class="n">1</div><p><b>당초 검토안(교육 영상 시청 → 인증 배지)은 현장 검증에서 지지받지 못했습니다.</b> 교육 효과 기대는 1·3·5점으로 분산됐고, 예약 단계 이수 강제는 3곳 중 2곳이 이탈 우려 최고점(5점)을 줬습니다.</p></div>
+    <div class="line"><div class="n">2</div><p><b>대신 골프장 2곳이 독립적으로 같은 대안을 제안했습니다</b> — 교육 이수는 '연습 자격'으로 하고, 실제 라운드의 진행속도·카트 안전 데이터로 검증해 정식 자격을 발급하는 <b>데이터 기반 단계형 라이선스.</b> 우리의 원래 기획 방향(자격 발급 + 관제 통합)과 일치합니다.</p></div>
+    <div class="line"><div class="n">3</div><p><b>이 모델은 예약 플랫폼 강화 수단이 됩니다.</b> 인증 고객에게만 노캐디 티타임을 열면 골프장은 공급을 늘릴 수 있고, 그 인벤토리를 우리가 독점 유통합니다. 성립 여부는 단 하나의 질문 — <b>"인증 조건이면 골프장이 실제로 팀수를 늘리는가"</b> — 에 달려 있으며, 이는 파일럿으로만 검증 가능합니다.</p></div>
+  </div>
+
+  <!-- ============ 2. 배경 ============ -->
+  <h2><span class="num">2.</span>왜 지금인가 — 시장 배경</h2>
+  <div class="kpi-row">
+    <div class="kpi"><div class="v">75%</div><div class="l">팀당 캐디피 15만원 골프장 비중<br>(2026.2, 20년간 79% 상승)</div></div>
+    <div class="kpi"><div class="v">41%</div><div class="l">캐디선택제 도입 골프장<br>(231/562개소, 2019년 대비 2배)</div></div>
+    <div class="kpi warn"><div class="v">0.5~18%</div><div class="l">직영 3개소의 실제 노캐디<br>티타임 비중 — 극히 제한적</div></div>
+    <div class="kpi"><div class="v">+1만원</div><div class="l">더반CC 노캐디 그린피 할증<br>— 그래도 먼저 마감</div></div>
+  </div>
+  <div class="card">
+    <p><b>수요는 검증됐고, 병목은 공급입니다.</b> 캐디피 부담으로 노캐디 수요는 구조적으로 증가하고 있으나, 골프장은 익명 고객의 리스크(진행 지연·사고·매너)를 걸러낼 수단이 없어 공급을 극히 제한적으로만 열고 있습니다. 이지스카이는 검증된 주주 8명에게만 자체 라이선스를 발급해 운영 중 — 골프장 스스로 신뢰 필터를 만들면 이만큼 좁아집니다. <b>고객 검증 데이터를 가진 플랫폼만이 이 병목을 풀 수 있습니다.</b></p>
+  </div>
+
+  <!-- ============ 3. 설문 핵심 결과 ============ -->
+  <h2><span class="num">3.</span>설문에서 확인된 4가지 사실</h2>
+
+  <div class="fact">
+    <span class="badge bad">기각</span>
+    <div>
+      <h3>예약 단계에서 교육 영상을 강제하면 고객이 이탈한다</h3>
+      <p>일반 고객 대상 2곳(더반·의령리온) 모두 이탈 우려 5점 만점. 의령리온은 과거 교육·테스트 진행 시 실제 불만 다수 경험.</p>
+      <div class="ev">→ 이수 시점은 예약 플로우 밖(사전 앱 학습 등)으로 분리해야 함</div>
+    </div>
+  </div>
+
+  <div class="fact">
+    <span class="badge bad">통념 기각</span>
+    <div>
+      <h3>노캐디 팀은 캐디팀보다 10~15분 느리다 (3사 공통)</h3>
+      <p>진행 지연은 일일 수용 팀수 감소로 이어지는 골프장의 실질 손익 이슈. 골프장이 원하는 것은 '교육받은 고객'이 아니라 <b>'진행이 검증된 고객'</b>.</p>
+      <div class="ev">→ 단, 라운드 시간은 앞뒤 팀 밀림 등 외생 변수로 오염되는 지표 — 개인 자격 판정에 그대로 쓸 수 없으며, '자기 귀책 지연'을 분리 측정하는 설계가 장기 과제</div>
+    </div>
+  </div>
+
+  <div class="fact">
+    <span class="badge ok">성립</span>
+    <div>
+      <h3>인센티브 구조는 성립한다 — 단, 할인이 아니라 '접근권'</h3>
+      <p>인증 고객 우선 배정 의향 3/3 (이지스카이는 조건부). 전용 티타임·선예약 제공 가능 3/3. 반면 금전 할인 가능은 0/3.</p>
+      <div class="ev">→ 인증의 보상 = "희소한 노캐디 티타임을 먼저, 확실하게 구한다"</div>
+    </div>
+  </div>
+
+  <div class="fact">
+    <span class="badge ok">기회</span>
+    <div>
+      <h3>골프장이 먼저 '단계형 라이선스'를 설계해서 제안했다</h3>
+      <p>이지스카이: 연습 라이선스(교육 1회) → 3회 라운드 실측 데이터 자동 검증 → 앱에서 정식 자격 발급, 미달 시 회수. 의령리온: "운전면허 방식 라이선스면 책임감 있게 플레이"(효과 기대 5점). 파일럿 참여 의향 3/3.</p>
+      <div class="ev">→ 현장이 원하는 것과 우리가 만들려는 것이 일치 — 도입 저항이 낮음</div>
+    </div>
+  </div>
+
+  <!-- ============ 4. 항목별 응답 요약 ============ -->
+  <h2><span class="num">4.</span>설문 항목별 응답 요약 — 판단 근거</h2>
+  <p class="h2sub">Part A 운영 정책 → Part B 현장 실태 → Part C 고객 접점·인센티브 → 마무리 순. 원문 취지를 보존한 요약이며, 전체 원문은 실무팀 리포트 참조</p>
+
+  <h3 style="font-size:16.5px; font-weight:800; margin:28px 0 10px; color:var(--green-dark);">Part A. 운영 정책 · 확대 의지 <span style="font-weight:400; color:var(--sub); font-size:13px;">(운영 담당 응답)</span></h3>
+  <div class="tbl-scroll">
+    <table>
+      <tr><th style="width:150px">문항</th><th>이지스카이CC</th><th>더반CC</th><th>의령리온GC</th></tr>
+      <tr>
+        <td><b>A-1</b> 한정 운영하는 이유</td>
+        <td>안전사고 · 진행지연 · 컴플레인 · 코스훼손 · 캐디인력(수급 대비) · 주주정책(주주 차별성)</td>
+        <td>안전사고 · 진행지연 · 캐디인력</td>
+        <td>진행지연(멀리건·투볼 빈번) · 코스훼손(그린 비매너) · 캐디인력(기존 캐디 근무횟수 영향)</td>
+      </tr>
+      <tr>
+        <td><b>A-2</b> 확대의 최대 걸림돌</td>
+        <td>코스 간 위험구간(카트 급경사) + 홀간 타구사고(블라인드홀·짧은 전장)</td>
+        <td>안전사고 및 운영 인력 부족</td>
+        <td>경기진행 지연 → 야간 조명 운영시간 딜레이</td>
+      </tr>
+      <tr>
+        <td><b>A-3</b> 문제의 주된 원인 ★</td>
+        <td>(a) 정보 부족 — "정보부족+인프라부족이 결합해 운영시스템 문제로 표출. 마샬 통제보다 골퍼 스스로 플레이할 수 있는 시스템(핀 위치·앞팀 위치·샷 가능 시점 안내)이 중요"</td>
+        <td>(a) 정보 부족 — "비기너들이 노캐디를 많이 원함"</td>
+        <td>(b) 태도·매너 — 멀리건, 투볼플레이, 코스 내 흡연</td>
+      </tr>
+      <tr>
+        <td><b>A-4</b> 운영·매출 영향 체감 (1~5)</td>
+        <td><b>3</b> — "캐디피가 그린피보다 높아지는 시점엔 가장 강력한 매출 견인책. 단 초보 지연·팀수 조정 감안하면 매출 효과 제한적일 수도"</td>
+        <td><b>4</b> — 필드팀 피로도 증가. 매출은 +1만원에도 먼저 마감 → 증대 기대</td>
+        <td><b>2</b> — 일부 고객 주류 반입 후 카트에서 음주</td>
+      </tr>
+      <tr>
+        <td><b>A-5</b> 사전 교육의 효과 (1~5) ★</td>
+        <td><b>3</b> — "범용 이수증은 실효성 낮음, 골프장 맞춤 교육이어야. 시니어 반발 우려. <u>연습 라이선스 → 3회 실측 검증 → 정식 발급</u> 제안"</td>
+        <td><b>1</b> — "비기너를 잘 제한해야 문제가 줄어듦" (교육 자체엔 회의적)</td>
+        <td><b>5</b> — "운전면허 방식 라이선스 카드 발급 시 책임감 있게 셀프 운영"</td>
+      </tr>
+      <tr>
+        <td><b>A-6</b> 확대 의향</td>
+        <td>조건부 — 블라인드홀·홀간 이동 안전 보완 시</td>
+        <td><b>있다</b> — 점차적 확대 예정</td>
+        <td>조건부 — 카트도로 화살표 표시</td>
+      </tr>
+      <tr>
+        <td><b>A-7</b> 캐디팀 대비 차이</td>
+        <td>진행 큰 차이 없음(클럽 직접 챙겨 신속). 그린피 보전, 음식물 반입 증가로 식음 기여 낮을 것</td>
+        <td>3인 제한으로 진행 차이 없음. 그린피 +1만원. 앞뒤팀 클레임 다소 있음</td>
+        <td>일반팀 사이 배치로 진행 차이 없음. 골프 매출 동일, 식음 하락 예상. 뒷팀 컴플레인 발생</td>
+      </tr>
+    </table>
+  </div>
+
+  <h3 style="font-size:16.5px; font-weight:800; margin:28px 0 10px; color:var(--green-dark);">Part B. 현장 실태 <span style="font-weight:400; color:var(--sub); font-size:13px;">(현장·경기 진행 담당 응답)</span></h3>
+  <div class="tbl-scroll">
+    <table>
+      <tr><th style="width:150px">문항</th><th>이지스카이CC</th><th>더반CC</th><th>의령리온GC</th></tr>
+      <tr>
+        <td><b>B-1</b> 자주 발생하는 문제</td>
+        <td><b>자주:</b> 진행지연, 팀 간격 실패<br><b>가끔:</b> 카트사고, 코스훼손, 안전사고, 에티켓</td>
+        <td><b>자주:</b> 팀 간격 실패, 에티켓 위반, 분실물<br><b>가끔:</b> 진행지연, 카트사고, 코스훼손</td>
+        <td><b>자주:</b> 코스훼손(벙커·그린 미보수 대다수), 에티켓(흡연·쓰레기·멀리건)<br><b>가끔:</b> 진행지연, 팀 간격, 카트사고, 안전사고</td>
+      </tr>
+      <tr>
+        <td><b>B-2</b> 진행시간 차이</td>
+        <td>캐디팀 대비 약 <b>10분 느림</b></td>
+        <td>약 <b>10분 느림</b> — "진행 안 되는 팀은 전혀 안 됨"</td>
+        <td><b>10~15분 느림</b> 예상 (9홀 평균 1:50~2:05)</td>
+      </tr>
+      <tr>
+        <td><b>B-3</b> 문제 고객 유형</td>
+        <td>초보(리모컨 오작동 우려) · 초행("쉽다고 왔다가 힘들어함") · 조인 고객 간 다툼</td>
+        <td>초보(머리올리기 신청 다수) · 초행(첫 내장 고객 다수)</td>
+        <td>초보(슬라이스·미스샷) · 초행 · <b>음주 골퍼(진행 비협조·욕설·위협)</b></td>
+      </tr>
+      <tr>
+        <td><b>B-4</b> 현재 관리 방식</td>
+        <td>마샬(앞뒤 경력캐디 무전) + GPS 관제 + 스타트 안내(동의서). 한계: 리모컨 오작동</td>
+        <td>마샬 + GPS 관제(위치 안내멘트) + 스타트 안내</td>
+        <td>마샬 + GPS 관제(스마트스코어) + 스타트 안내</td>
+      </tr>
+      <tr>
+        <td><b>B-5~7</b> 안내·매뉴얼</td>
+        <td>반드시 안내(안전 서약서). 운영매뉴얼 있음(주주팀 한정). 사고대응은 구두 수준(유선 연락)</td>
+        <td>반드시 안내(주의사항·동의서). 운영매뉴얼 없음(취합 중). 사고대응 매뉴얼 있음</td>
+        <td>반드시 안내(동의서 자필 사인). 운영·사고대응 매뉴얼 있음(코팅 매뉴얼북 카트 비치)</td>
+      </tr>
+      <tr>
+        <td><b>B-8</b> 카트 사고</td>
+        <td>연 2~5건 — 광장 대기 중 리모컨 오작동 추돌 1건</td>
+        <td>거의 없음 (6월 시작, 기간 짧음)</td>
+        <td>거의 없음 — 리모컨 미지급·위험구간 자동운행으로 최소화</td>
+      </tr>
+      <tr>
+        <td><b>B-9</b> "미리 알았다면" 항목<br><span style="font-weight:400; color:var(--sub); font-size:12px;">(교육 콘텐츠 소재)</span></td>
+        <td>광장 대기 시 시동 off·리모컨 가슴 위 휴대 / 앞팀과 거리·티샷 시점(알림음 확인) / 클럽 들고 운전 금지 / 내리막·커브 시 동반자 자세</td>
+        <td>사용 티박스 위치 / 교차로 이동 동선</td>
+        <td>태블릿 앞팀 위치 확인(타구사고) / 급커브 손잡이(낙상) / 플레이어보다 앞에 나가지 않기(팀내 타구사고)</td>
+      </tr>
+      <tr>
+        <td><b>B-10</b> 교육 가능 vs 통제 필요</td>
+        <td>교육: 태블릿 GPS·앞팀 동선 확인법 / 통제: 안전표지판, 내리막 서행</td>
+        <td>교육: 이동 동선, 티·그린 이용 순번 / 통제: 블라인드홀 앞팀 위치 확인</td>
+        <td>교육: 태블릿 앞팀 체크, 앞으로 나가지 않기 / 통제: 급커브·경사 구간 표지판·태블릿 음성안내</td>
+      </tr>
+    </table>
+  </div>
+  <div class="quote"><span class="who">공통점</span>3사 모두 "태블릿으로 앞팀 위치 확인"을 교육 1순위 소재로 지목 — 교육 콘텐츠의 실체는 <b>관제 도구 사용법</b>. 교육과 관제는 분리된 상품이 아님.</div>
+
+  <h3 style="font-size:16.5px; font-weight:800; margin:28px 0 10px; color:var(--green-dark);">Part C. 고객 접점 · 인증마크 인센티브 <span style="font-weight:400; color:var(--sub); font-size:13px;">(예약·마케팅 담당 응답)</span></h3>
+  <div class="tbl-scroll">
+    <table>
+      <tr><th style="width:150px">문항</th><th>이지스카이CC</th><th>더반CC</th><th>의령리온GC</th></tr>
+      <tr>
+        <td><b>C-1</b> 예약 고객 사전 안내</td>
+        <td>전화 안내(주주만) + 현장 안내(안전 동의서)</td>
+        <td>예약 페이지 문구 + 현장 안내</td>
+        <td>예약 페이지 — 카카오골프예약에 셀프라운드 티타임 표기</td>
+      </tr>
+      <tr>
+        <td><b>C-2</b> 신규 vs 재방문</td>
+        <td>재방문 — "한번 하신 분은 계속 셀프"</td>
+        <td>신규 — 테스트 기간 짧은 영향</td>
+        <td>재방문 — 단, <b>첫 셀프 고객 대다수는 힘들어서 다음엔 캐디 요청</b></td>
+      </tr>
+      <tr>
+        <td><b>C-3</b> 예약단계 교육 강제 시 이탈 우려 (1~5) ★</td>
+        <td><b>1</b> — 주주 한정 운영이라 참고치 낮음</td>
+        <td><b>5</b> — "긴 교육영상 요구 시 거부감 클 것"</td>
+        <td><b>5</b> — "과거 카트 테스트·에티켓 교육 때도 불만 많았음. 라운드 종료 후 테스트 방식으로 우회 운영했었음"</td>
+      </tr>
+      <tr>
+        <td><b>C-4</b> 제공 가능 인센티브 ★</td>
+        <td>우대예약 ○ / "별도 인센티브 없음"도 체크. 전용타임은 "우선보다 뒤쪽 배치가 진행상 나음"</td>
+        <td>전용·우선 티타임 ○ + 우대예약 ○</td>
+        <td>전용·우선 티타임 ○ + 우대예약 ○</td>
+      </tr>
+      <tr>
+        <td><b>C-5</b> 인증 고객 우선 배정 의향 ★</td>
+        <td>조건부 — 캐디 동반 3회 이상 + 현장 코스 운행 테스트 합격 시</td>
+        <td><b>있다</b></td>
+        <td><b>있다</b></td>
+      </tr>
+      <tr>
+        <td><b>C-6</b> 골프장이 보는 이득</td>
+        <td>진행속도 개선 · 사고/클레임 감소 · 캐디 비용 절감("소수 캐디면 비용절감 월등") · 차별화(캐디피 부담 해소)</td>
+        <td>마케팅 소구점(노캐디 친화 이미지)</td>
+        <td>진행속도 개선 · 사고/클레임 감소</td>
+      </tr>
+      <tr>
+        <td><b>C-7</b> 우려점</td>
+        <td>책임소재(주주 외 동반자 운전 불가) · 고객 반발(클럽 분실·진행 문제)</td>
+        <td>실효성 의문 — <b>"비기너는 교육으로 해결이 안 됨"</b></td>
+        <td>책임소재 — 인증자가 아닌 동반자 운전 중 사고 시. 동의서에 책임소재 명기 필요</td>
+      </tr>
+    </table>
+  </div>
+
+  <h3 style="font-size:16.5px; font-weight:800; margin:28px 0 10px; color:var(--green-dark);">마무리 — 파일럿 참여 의향 (M-1 / M-2)</h3>
+  <div class="tbl-scroll">
+    <table>
+      <tr><th style="width:150px">골프장</th><th>참여 의향</th><th>조건 · 자유 의견</th></tr>
+      <tr><td><b>이지스카이</b></td><td>조건부</td><td>부분별 운영 가능. "일반인 확대 시 기준점 필요(비기너 다수 내장). 노캐디 타임은 뒤쪽 배치로 점진 확대. 태블릿 활용 교육으로 타구사고 방지"</td></tr>
+      <tr><td><b>더반</b></td><td>조건부</td><td>"더반도 테스트 도입 단계로, 샘플 타임 테스트로 진행했으면 함"</td></tr>
+      <tr><td><b>의령리온</b></td><td>조건부</td><td>셀프라운드 대상자 중 희망 고객에 한해 진행</td></tr>
+    </table>
+  </div>
+
+  <!-- ============ 5. 사업 모델 ============ -->
+  <h2><span class="num">5.</span>플랫폼 관점의 사업 구조</h2>
+  <p class="h2sub">인증은 상품이 아니라 플라이휠의 시동장치 — 최종 자산은 '독점 노캐디 인벤토리'와 '크로스 골프장 고객 검증 데이터'</p>
+
+  <div class="flywheel">
+    <div class="fw-step"><b>① 고객 인증</b><span>교육 + 라운드 실측 데이터로 검증된 셀프플레이어 확보</span></div>
+    <div class="fw-step"><b>② 골프장 리스크 해소</b><span>지연·사고·매너 리스크가 걸러진 고객만 배정</span></div>
+    <div class="fw-step"><b>③ 노캐디 공급 확대</b><span>골프장이 안심하고 티타임을 늘림 → 플랫폼 독점 유통</span></div>
+    <div class="fw-step"><b>④ 고객 유입</b><span>노캐디 티타임을 구할 수 있는 유일한 채널 → 인증 고객 증가</span></div>
+  </div>
+  <p class="fw-note">노캐디 티타임이 희소한 <b>지금이 독점 유통 구조를 선점할 수 있는 시점</b> — 공급이 흔해진 뒤에는 골프장이 독점 계약에 응할 유인이 없음</p>
+
+  <!-- ============ 6. 리스크 ============ -->
+  <h2><span class="num">6.</span>주요 리스크와 대응</h2>
+  <div class="tbl-scroll">
+    <table>
+      <tr><th style="width:200px">리스크</th><th>내용</th><th>대응 방향</th></tr>
+      <tr><td><b>비기너 딜레마</b></td><td>노캐디 수요자도, 문제 유발자도 비기너. "교육으로 해결 안 됨"(더반) — 배제하면 수요 절반 상실</td><td>배제가 아닌 단계형 사다리(연습 자격 → 실측 검증 → 정식 자격)로 흡수</td></tr>
+      <tr><td><b>동반자 운전 사고 책임</b></td><td>인증자 외 동반자 운전 시 사고 (2개소 공통 지적). 서약서만으로 면책 불가</td><td>출발 전 운전자 지정 + 동의서 명기 + 골프장 기보유 배상책임보험의 적용 범위 확인 (법무 검토). 고객 보험 의무화는 선례 없어 배제</td></tr>
+      <tr><td><b>첫 경험 이탈</b></td><td>"첫 셀프 라운드 고객 대다수가 힘들어서 다음엔 캐디 요청"(의령리온)</td><td>첫 라운드 온보딩(태블릿 앞팀 확인 UX 등 관제 도구) 강화</td></tr>
+      <tr><td><b>식음 매출 하락 우려</b></td><td>음식물 반입 증가 예상 (2개소)</td><td>파일럿에서 실측 후 판단 — 노캐디 할증(+1만원 사례)으로 상쇄 가능성</td></tr>
+      <tr><td><b>경쟁 선점</b></td><td>코스 내 데이터 레이어를 가진 사업자가 유사 모델 선행 가능</td><td>예약 수요 + 직영 골프장 실증을 묶어 선점 — 시급성의 근거</td></tr>
+    </table>
+  </div>
+
+  <footer>
+    근거 자료: 직영 3개소 서면 설문 (이지스카이CC 정옥진 2026.07.07 / 더반CC 김대훈 필드팀장 2026.07.06 / 의령리온GC 노평훈 그룹장 2026.07.06) · 해외시장리서치_미국일본_노캐디_v0.1 (2026.07.02) · 시장 수치: 한국레저산업연구소 캐디선택제 조사(2025.10), 캐디피 조사(2026.02) · 상세 응답 데이터는 실무팀 리포트(노캐디_설문결과_리포트.html) 참조
+  </footer>
+
+</div>
+</body>
+</html>
